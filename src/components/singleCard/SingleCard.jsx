@@ -1,7 +1,8 @@
 import './SingleCard.scss'
+import { Link } from "react-router-dom";
 const SingleCard = () => {
   return (
-    <div className='singleCard'>
+    <Link to={`/1`} className='singleCard'>
         <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
         <div className="info">
             <h2>Card Title</h2>
@@ -17,7 +18,7 @@ const SingleCard = () => {
                 </div>
           </div>
         </div>
-    </div>
+    </Link>
   )
 }
 

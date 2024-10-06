@@ -13,10 +13,10 @@ function Navbar() {
           <img src="/logo.png" alt="" />
           <span>LamaEstate</span>
         </a>
-        <a href="/">Home</a>
-        <a href="/">About</a>
-        <a href="/">Contact</a>
-        <a href="/">Agents</a>
+        <a href="/">Accueil</a>
+        <a href="/">Contacter Nous</a>
+        <a href="/">Bien Immobilier</a>
+        <a href="/">Terrain</a>
       </div>
       <div className="right">
         {user ? (
@@ -33,10 +33,7 @@ function Navbar() {
           </div>
         ) : (
           <>
-            <a href="/">Sign in</a>
-            <a href="/" className="register">
-              Sign up
-            </a>
+            <a href="/">Connexion Admin</a>
           </>
         )}
         <div className="menuIcon">

@@ -19,7 +19,7 @@
 
     input,
     select {
-      width: 100px;
+      width: 120px;
       padding: 10px;
       border: 1px solid #e0e0e0;
       border-radius: 5px;
@@ -37,7 +37,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 1rem;
 
     button {
       width: 100px;
