@@ -24,8 +24,12 @@
                 display: flex;
                 align-items: center;
                 gap: 10px;
+                transition: all 0.4s ease;
+                &:hover {
+                    scale: 1.05;
+                }
                 img{
-                    width: 28px;
+                    width: 48px;
                 }
                 span{
                     @include md{

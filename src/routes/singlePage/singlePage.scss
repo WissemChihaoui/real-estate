@@ -127,6 +127,12 @@
         height: 24px;
       }
 
+      .title2 {
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 12px;
+      }
+
       .title {
         font-weight: bold;
         font-size: 18px;
@@ -170,7 +176,9 @@
 
       .sizes {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 12px;
+        flex-wrap: wrap;
 
         @include lg {
           font-size: 12px;
@@ -194,8 +202,9 @@
       .buttons {
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
-        button {
+        .button {
           padding: 20px;
           display: flex;
           align-items: center;

@@ -9,14 +9,14 @@ function Navbar() {
   return (
     <nav>
       <div className="left">
-        <a href="/" className="logo">
+        <Link to="/" className="logo">
           <img src="/logo.png" alt="" />
-          <span>LamaEstate</span>
-        </a>
-        <a href="/">Accueil</a>
-        <a href="/">Contacter Nous</a>
-        <a href="/">Bien Immobilier</a>
-        <a href="/">Terrain</a>
+          <span>Krayem</span>
+        </Link>
+        <Link to="/">Accueil</Link>
+        <Link to="/contact">Contacter Nous</Link>
+        <Link to="/list?type=b">Bien Immobilier</Link>
+        <Link to="/list?type=t">Terrain</Link>
       </div>
       <div className="right">
         {user ? (
@@ -46,7 +46,7 @@ function Navbar() {
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Home</a>
           <a href="/">About</a>
-          <a href="/">Contact</a>
+          <a href="/contact">Contact</a>
           <a href="/">Agents</a>
           <a href="/">Sign in</a>
           <a href="/">Sign up</a>

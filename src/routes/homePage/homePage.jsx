@@ -1,3 +1,4 @@
+import ContactBand from "../../components/contactBand/contactBand";
 import SearchBar from "../../components/searchBar/SearchBar";
 import SingleCard from "../../components/singleCard/SingleCard";
 import "./homePage.scss";
@@ -19,15 +20,12 @@ function HomePage() {
             <div className="boxes">
               <div className="box">
                 <h1>16+</h1>
-                <h2>Years of Experience</h2>
+                <h2>Années d'expérience</h2>
               </div>
+              
               <div className="box">
-                <h1>200</h1>
-                <h2>Award Gained</h2>
-              </div>
-              <div className="box">
-                <h1>2000+</h1>
-                <h2>Property Ready</h2>
+                <h1>20+</h1>
+                <h2>Propriété prête</h2>
               </div>
             </div>
           </div>
@@ -58,6 +56,7 @@ function HomePage() {
           </div>
         </div>
       </div>
+      <ContactBand />
     </div>
   );
 }

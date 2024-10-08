@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "./searchBar.scss";
+import { useNavigate } from "react-router-dom";
 
-const types = ["Bien Immobilier", "Terrains"];
+const types = [{value: 't', label: 'Terrain'}, {value:'b', label:'Bien Immobilier'}];
 
 function SearchBar() {
+  const navigate = useNavigate();
   const [query, setQuery] = useState({
-    type: "Bien Immobilier",
+    type: "b",
     location: "",
     minPrice: 0,
     maxPrice: 0,
@@ -15,27 +17,49 @@ function SearchBar() {
     setQuery((prev) => ({ ...prev, type: val }));
   };
 
+  const handleChange = (e)=> {
+    setQuery({
+      ...query,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    const params = new URLSearchParams();
+  
+    if (query.type) params.append('type', query.type);
+    if (query.location) params.append('location', query.location);
+    if (query.minPrice > 0) params.append('minPrice', query.minPrice);
+    if (query.maxPrice > 0) params.append('maxPrice', query.maxPrice);
+  
+    navigate(`/list?${params.toString()}`);
+  };
+  
+
   return (
     <div className="searchBar">
       <div className="type">
-        {types.map((type) => (
+        {types.map((type, index) => (
           <button
-            key={type}
-            onClick={() => switchType(type)}
-            className={query.type === type ? "active" : ""}
+            key={index}
+            onClick={() => switchType(type.value)}
+            className={query.type === type.value ? "active" : ""}
           >
-            {type}
+            {type.label}
           </button>
         ))}
       </div>
       <form>
-        <input type="text" name="location" placeholder="Ville" />
+        <input type="text" name="location" placeholder="Ville" onChange={handleChange}/>
         <input
           type="number"
           name="minPrice"
           min={0}
           max={10000000}
           placeholder="Min Prix"
+          onChange={handleChange}
         />
         <input
           type="number"
@@ -43,8 +67,9 @@ function SearchBar() {
           min={0}
           max={10000000}
           placeholder="Max Prix"
+          onChange={handleChange}
         />
-        <button>
+        <button onClick={(e)=>handleSubmit(e)}>
           <img src="/search.png" alt="" />
         </button>
       </form>

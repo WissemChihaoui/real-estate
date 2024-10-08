@@ -7,13 +7,13 @@ const Footer = () => {
             <div className='about'>
                 <a href="/" className="logo">
                     <img src="/logo.png" alt="" />
-                    <span>LamaEstate</span>
+                    <span>Krayem</span>
                 </a>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque nesciunt eum atque nulla repellat asperiores animi optio unde voluptatum totam. Excepturi a at neque aliquam sint optio explicabo ut esse.</p>
             </div>
             <div className='links'>
-                <a href="#">Des terrains</a>
-                <a href="#">Des Bien Immobilier</a>
+                <a href="/list?type=t">Des terrains</a>
+                <a href="/list?type=b">Des Bien Immobilier</a>
                 <a href="#">Annoncer</a>
             </div>
         </div>

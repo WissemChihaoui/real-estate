@@ -9,6 +9,7 @@ import SinglePage from "./routes/singlePage/singlePage";
 import ProfilePage from "./routes/profilePage/profilePage";
 import Login from "./routes/login/login";
 import Register from "./routes/register/register";
+import Contact from "./routes/contact/contact";
 
 function App() {
   const router = createBrowserRouter([
@@ -19,6 +20,10 @@ function App() {
         {
           path:"/",
           element:<HomePage/>
+        },
+        {
+          path:"/contact",
+          element:<Contact/>
         },
         {
           path:"/list",
