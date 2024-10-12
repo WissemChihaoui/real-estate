@@ -9,7 +9,7 @@ import SinglePage from "./routes/singlePage/singlePage";
 import ProfilePage from "./routes/profilePage/profilePage";
 import Login from "./routes/login/login";
 import Register from "./routes/register/register";
-import Contact from "./routes/contact/contact";
+import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,10 +21,7 @@ function App() {
           path:"/",
           element:<HomePage/>
         },
-        {
-          path:"/contact",
-          element:<Contact/>
-        },
+        
         {
           path:"/list",
           element:<ListPage/>
@@ -36,6 +33,10 @@ function App() {
         {
           path:"/profile",
           element:<ProfilePage/>
+        },
+        {
+          path:"/edit-profile",
+          element:<ProfileUpdatePage/>
         },
         {
           path:"/login",

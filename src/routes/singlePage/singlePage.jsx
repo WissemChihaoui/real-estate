@@ -14,7 +14,7 @@ const SinglePage=()=> {
   useEffect(() => {
     const fetchProperties = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/properties/${id}`);
+            const response = await axios.get(`http://localhost:5000/api/properties/get-propertie/${id}`);
             setProperty(response.data);
         } catch (error) {
             console.error('Error fetching properties:', error);
@@ -23,6 +23,9 @@ const SinglePage=()=> {
     console.log('In Use Effect');
     fetchProperties();
 }, [id]);
+
+console.log(property?.image)
+console.log(property?.thumbnails)
 
 console.log(property);
   const immobilierCategories = {
@@ -127,7 +130,7 @@ console.log(property);
     <div className="singlePage">
       <div className="details">
         <div className="wrapper">
-          {/* <Slider images={property?.images} /> */}
+          <Slider data={property} />
           <div className="info">
             <div className="top">
               <div className="post">
@@ -165,7 +168,7 @@ console.log(property);
          
           <p className="title">Location</p>
           <div className="mapContainer">
-            
+            <Map items={[property]}/>
           </div>
           <div className="buttons">
               <p>Pour Réserver :</p>

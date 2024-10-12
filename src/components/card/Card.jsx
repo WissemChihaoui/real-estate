@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./card.scss";
 
 function Card({ item }) {
+  const user = true;
   return (
     <div className="card">
       <Link to={`/${item._id}`} className="imageContainer">
@@ -9,7 +10,15 @@ function Card({ item }) {
       </Link>
       <div className="textContainer">
         <h2 className="title">
-          <Link to={`/${item._id}`}>{item.title}</Link>
+          <span>
+            <Link to={`/${item._id}`}>{item.title}</Link>
+          </span>
+          {user && (
+            <div className="settings">
+              <Link className={`/edit-post/${item._id}`}><button>Modifier</button></Link>
+              <button className="dangerBtn">Supprimer</button>
+            </div>
+          )}
         </h2>
         <p className="address">
           <img src="/pin.png" alt="" />

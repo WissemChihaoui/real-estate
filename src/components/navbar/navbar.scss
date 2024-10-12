@@ -120,14 +120,16 @@ nav {
         height: 36px;
         cursor: pointer;
       }
-
+      &.active{
+        position: fixed;
+      }
       @include sm {
         display: inline;
       }
     }
 
     .menu {
-      position: absolute;
+      position: fixed;
       top: 0;
       right: -50%;
       background-color: black;

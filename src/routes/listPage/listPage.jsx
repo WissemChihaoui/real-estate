@@ -12,7 +12,7 @@ function ListPage() {
   useEffect(() => {
     const fetchProperties = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/properties/');
+            const response = await axios.get('http://localhost:5000/api/properties/get-properties');
             setProperties(response.data);
         } catch (error) {
             console.error('Error fetching properties:', error);

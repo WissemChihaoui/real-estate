@@ -35,11 +35,35 @@
       font-size: 20px;
       font-weight: 600;
       color: #444;
-      transition: all 0.4s ease;
+      display: flex;
+      justify-content: space-between;
+      span{
+        transition: all 0.4s ease;
 
-      &:hover {
-        color: #000;
-        scale: 1.01;
+        &:hover {
+          color: #000;
+          scale: 1.01;
+        }
+      }
+      .settings{
+        display: flex;
+        gap: 12px;
+        button{
+          transition: all 0.4s ease;
+          border-radius: 4px;
+
+          padding: 12px 24px;
+          background-color: #fece51;
+          cursor: pointer;
+          border: none;
+          &:hover{
+            scale: 1.01;
+          }
+        }
+        .dangerBtn{
+          background-color: #e21d1d;
+          color: white;
+        }
       }
     }
 

@@ -56,7 +56,6 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <ContactBand />
     </div>
   );
 }

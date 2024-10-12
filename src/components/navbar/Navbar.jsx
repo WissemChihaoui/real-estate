@@ -14,7 +14,6 @@ function Navbar() {
           <span>Krayem</span>
         </Link>
         <Link to="/">Accueil</Link>
-        <Link to="/contact">Contacter Nous</Link>
         <Link to="/list?type=b">Bien Immobilier</Link>
         <Link to="/list?type=t">Terrain</Link>
       </div>
@@ -36,7 +35,7 @@ function Navbar() {
             <a href="/">Connexion Admin</a>
           </>
         )}
-        <div className="menuIcon">
+        <div className={open ? "menuIcon active" : "menuIcon"}>
           <img
             src="/menu.png"
             alt=""
@@ -46,7 +45,6 @@ function Navbar() {
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Home</a>
           <a href="/">About</a>
-          <a href="/contact">Contact</a>
           <a href="/">Agents</a>
           <a href="/">Sign in</a>
           <a href="/">Sign up</a>

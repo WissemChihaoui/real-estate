@@ -1,8 +1,10 @@
 import React from 'react'
+import ContactBand from '../contactBand/contactBand'
 import './Footer.scss'
 const Footer = () => {
   return (
     <div className='footer'>
+        <ContactBand />
         <div className='footerContent'>
             <div className='about'>
                 <a href="/" className="logo">
