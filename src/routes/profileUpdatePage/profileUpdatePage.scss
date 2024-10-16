@@ -24,6 +24,7 @@
           padding: 20px;
           border-radius: 5px;
           border: 1px solid gray;
+          height: 40px;
         }
       }
       button {
@@ -32,8 +33,10 @@
         border: none;
         background-color: teal;
         color: white;
+        height: 50px;
         font-weight: bold;
         cursor: pointer;
+
       }
     }
   }
