@@ -1,20 +1,21 @@
 import './SingleCard.scss'
 import { Link } from "react-router-dom";
-const SingleCard = () => {
+const SingleCard = (item) => {
+  console.log('rrr',item.properity?.criteria?.chambres)
   return (
     <Link to={`/1`} className='singleCard'>
-        <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+        <img src={item.image} alt="" />
         <div className="info">
-            <h2>Card Title</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel nunc nec arcu finibus faucibus.</p>
+            <h2>{item.properity?.title}</h2>
+            <p>{item.properity?.description}.</p>
             <div className="features">
                 <div className="feature">
                     <img src="/bed.png" alt="" />
-                    <span>1 bedroom</span>
+                    <span>{item.properity?.criteria?.chambres}</span>
                 </div>
                 <div className="feature">
                     <img src="/bath.png" alt="" />
-                    <span>1 bathroom</span>
+                    <span>{item.properity?.criteria?.salle_de_bain}</span>
                 </div>
           </div>
         </div>

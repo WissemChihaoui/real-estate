@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 function Pin({ item }) {
   console.log('ITEM:', item);
   return (
-    <Marker position={[item?.location.latitude, item?.location.longitude]}>
+    <Marker position={[item?.location?.latitude, item?.location?.longitude]}>
       <Popup>
         <div className="popupContainer">
           <img src={item?.image} alt="" />
           <div className="textContainer">
             <Link to={`/${item?.id}`}>{item?.title}</Link>
-            <span>{item?.criteria.chambres} Chambres</span>
+            <span>{item?.criteria?.chambres} Chambres</span>
             <b>{item?.price} TND</b>
           </div>
         </div>

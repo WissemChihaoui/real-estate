@@ -30,7 +30,7 @@ function ProfilePage() {
       <div className="details">
         <div className="wrapper">
           <div className="title">
-            <h1>User Information</h1>
+            <h1>Profile Information</h1>
             <Link to={'/edit-profile'}>
               <button>
                 Update Profile
@@ -44,9 +44,9 @@ function ProfilePage() {
               <Skeleton circle height="50px" width="50px" containerClassName="avatar-skeleton" />)}
             </span>
             <span>
-              Username:
+              Name
               <b>
-                {userInfo?.firstName || (
+                {userInfo?.firstName  || (
                   <Skeleton
                     baseColor={'#ebebeb'}
                     width={100}

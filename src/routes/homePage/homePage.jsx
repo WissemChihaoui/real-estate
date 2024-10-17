@@ -1,9 +1,37 @@
+import { useEffect, useState } from "react";
 import ContactBand from "../../components/contactBand/contactBand";
 import SearchBar from "../../components/searchBar/SearchBar";
 import SingleCard from "../../components/singleCard/SingleCard";
 import "./homePage.scss";
+import axios from "axios";
+import Loader from "../../components/loader/Loader";
+
+
 
 function HomePage() {
+  const [properitys, setProperitys] = useState()
+  const [Loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        //setLoading(true);
+        const response = await axios.get('http://localhost:5000/api/properties/get-properties');
+        setProperitys(response.data);
+        if (response.status===200){
+          setLoading(false)
+        }
+      } catch (error) {
+        console.error('Error fetching properties:', error);
+      }
+    };
+
+    fetchProperties();
+  }, []);
+  if (Loading){ return (
+    <Loader/>
+   )
+  }
   return (
     <div>
       <div className="homePage">
@@ -38,10 +66,9 @@ function HomePage() {
         <div className="recent-posts wrapper">
           <h1 className="title">Nouvelles Offres</h1>
           <div className="cards">
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
+          {properitys.map((item) => (
+              <SingleCard key={item.id} properity={item} />
+          ))}
           </div>
         </div>
       </div>

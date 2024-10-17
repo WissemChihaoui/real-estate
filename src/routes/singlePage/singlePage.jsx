@@ -5,18 +5,29 @@ import { useParams, Link } from "react-router-dom";
 import "./singlePage.scss";
 import Slider from "../../components/slider/Slider";
 import Map from "../../components/map/Map";
+import Loader from "../../components/loader/Loader";
+import NotFound from "../404/notFound";
 
 const SinglePage=()=> {
   const [property, setProperty] = useState()
+  const [Loading, setLoading] = useState(true)
+const [Error, setError] = useState(false)
   const { id } = useParams();
   console.log(id);
 
   useEffect(() => {
     const fetchProperties = async () => {
         try {
+//          setLoading(true)
             const response = await axios.get(`http://localhost:5000/api/properties/get-propertie/${id}`);
             setProperty(response.data);
+            if (response.status===200){
+              setLoading(false)
+            }
+            console.log('PROPERITY ',response.data)
         } catch (error) {
+            setLoading(false)
+            setError(true)
             console.error('Error fetching properties:', error);
         }
     };
@@ -124,8 +135,14 @@ console.log(property);
     { title: 'Espaces Intérieurs', items: immobilierCategories.interieur },
   ];
 
-
-  
+ if (Loading){ return (
+  <Loader/>
+ )
+}
+if (Error){ return (
+  <NotFound/>
+ )
+}
   return (
     <div className="singlePage">
       <div className="details">
@@ -168,7 +185,7 @@ console.log(property);
          
           <p className="title">Location</p>
           <div className="mapContainer">
-            <Map items={[property]}/>
+            {<Map items={[property]}/>}
           </div>
           <div className="buttons">
               <p>Pour Réserver :</p>

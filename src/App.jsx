@@ -10,7 +10,7 @@ import ProfilePage from "./routes/profilePage/profilePage";
 import Login from "./routes/login/login";
 import Register from "./routes/register/register";
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
-
+import NotFound from "./routes/404/notFound";
 function App() {
   const router = createBrowserRouter([
     {
@@ -27,7 +27,7 @@ function App() {
           element:<ListPage/>
         },
         {
-          path:"/:id",
+          path:"/properity/:id",
           element:<SinglePage/>
         },
         {
@@ -45,6 +45,10 @@ function App() {
         {
           path:"/register",
           element:<Register/>
+        },
+        {
+          path:"/*",
+          element:<NotFound/>
         }
       ]
     }

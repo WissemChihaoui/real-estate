@@ -5,13 +5,13 @@ function Card({ item }) {
   const user = true;
   return (
     <div className="card">
-      <Link to={`/${item._id}`} className="imageContainer">
+      <Link to={`/properity/${item._id}`} className="imageContainer">
         <img src={item.image} alt="" />
       </Link>
       <div className="textContainer">
         <h2 className="title">
           <span>
-            <Link to={`/${item._id}`}>{item.title}</Link>
+            <Link to={`/properity/${item._id}`}>{item.title}</Link>
           </span>
           {user && (
             <div className="settings">

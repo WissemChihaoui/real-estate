@@ -27,7 +27,7 @@ const handleSubmit = async (e) => {
       formData);
       setLoading(true)  
     if (response.status === 200){
-      navigate("/home")
+      navigate("/profile")
       console.log("succed")
     }
     else{

@@ -98,6 +98,9 @@ function ProfileUpdatePage() {
               name='Upload image'
               onChange={handleFileChange} />
           </div>
+          
+          <button disabled={loading} >{loading ? "Processing ..": "Save"}</button>
+          {error && <p>{"Error updating profile"}</p>}
         </form>
       </div>
       <div className="sideContainer">
