@@ -14,8 +14,9 @@ const {type} = useParams()
           <span>Krayem</span>
         </Link>
         <Link to="/">Accueil</Link>
-        <Link to="/list/properity/b">Maison</Link>
-        <Link to="/list/properity/t">Terrain</Link>
+        <Link to="/list/properity?type=m">Maison</Link>
+        <Link to="/list/properity?type=v">Villa</Link>
+        <Link to="/list/properity?type=t">Terrain</Link>
       </div>
       <div className="right">
         {user ? (

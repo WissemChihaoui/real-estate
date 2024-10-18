@@ -2,12 +2,12 @@ import { useState } from "react";
 import "./searchBar.scss";
 import { useNavigate } from "react-router-dom";
 
-const types = [{value: 't', label: 'Terrain'}, {value:'b', label:'Bien Immobilier'}];
+const types = [{value: 't', label: 'Terrain'}, {value:'m', label:'Maison'}, {value:'v', label:'Villa'}];
 
 function SearchBar() {
   const navigate = useNavigate();
   const [query, setQuery] = useState({
-    type: "b",
+    type: "m",
     location: "",
     minPrice: 0,
     maxPrice: 0,
@@ -34,7 +34,7 @@ function SearchBar() {
     if (query.minPrice > 0) params.append('minPrice', query.minPrice);
     if (query.maxPrice > 0) params.append('maxPrice', query.maxPrice);
   
-    navigate(`/list?${params.toString()}`);
+    navigate(`/list/properity?${params.toString()}`);
   };
   
 
@@ -53,6 +53,7 @@ function SearchBar() {
       </div>
       <form>
         <input type="text" name="location" placeholder="Ville" onChange={handleChange}/>
+        
         <input
           type="number"
           name="minPrice"

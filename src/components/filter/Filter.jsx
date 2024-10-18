@@ -30,13 +30,13 @@ function Filter({queries}) {
     if (searchQueries.maxPrice > 0) params.append('maxPrice', searchQueries.maxPrice);
     if (searchQueries.surface > 0) params.append('surface', searchQueries.surface);
   
-    navigate(`/list?${params.toString()}`);
+    navigate(`/list/properity?${params.toString()}`);
   };
 
   return (
-    <div className="filter">
+     <div className="filter">
       <h1>
-        {searchQueries.location && <>Résultat pour <b>Houmet Essouk</b></>}
+        {searchQueries.location && <>Résultat pour <b>{searchQueries.location}</b></>}
       </h1>
       <div className="top">
         <div className="item">
@@ -54,13 +54,13 @@ function Filter({queries}) {
       <div className="bottom">
         <div className="item">
           <label htmlFor="type">Type</label>
-          <select name="type" id="type" onChange={handleChange} value={searchQueries.type}>
-            <option value="">touts</option>
-            <option value="b">Bien Immobilier</option>
-            <option value="t">Terrain</option>
-          </select>
+        <select name="type" onChange={handleChange} id="type" value={searchQueries.type}>
+          <option value="">Touts</option>
+          <option value="t">Terrain</option>
+          <option value="m">Maison</option>
+          <option value="v">Villa</option>
+        </select>
         </div>
-        
         <div className="item">
           <label htmlFor="minPrice">Min Prix</label>
           <input
@@ -84,19 +84,9 @@ function Filter({queries}) {
           />
         </div>
         <div className="item">
-          <label htmlFor="surface">Surface</label>
-          <input
-            type="text"
-            id="surface"
-            name="surface"
-            placeholder="touts"
-            value={searchQueries.surface}
-            onChange={handleChange}
-          />
+          <button onClick={handleSubmit} style={{height:'100%'}}>Filtrer</button>
         </div>
-        <button onClick={handleSubmit}>
-          <img src="/search.png" alt="" />
-        </button>
+      
       </div>
     </div>
   );

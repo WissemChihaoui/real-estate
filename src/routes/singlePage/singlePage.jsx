@@ -7,6 +7,7 @@ import Slider from "../../components/slider/Slider";
 import Map from "../../components/map/Map";
 import Loader from "../../components/loader/Loader";
 import NotFound from "../404/notFound";
+import { FaWhatsapp } from "react-icons/fa";
 
 const SinglePage=()=> {
   const [property, setProperty] = useState()
@@ -156,7 +157,7 @@ if (Error){ return (
                   <img src="/pin.png" alt="" />
                   <span>{property?.location?.country} {property?.location?.address}</span>
                 </div>
-                <div className="price">$ {property?.price}</div>
+                <div className="price">TND {property?.price}</div>
               </div>
               
             </div>
@@ -189,8 +190,8 @@ if (Error){ return (
           </div>
           <div className="buttons">
               <p>Pour Réserver :</p>
-            <Link className="button" to={'/contact'}>
-              <img src="/chat.png" alt="" />
+            <Link className="button" target={'_blank'} to={'https://wa.me/+21628072308'}>
+              <FaWhatsapp />
               Contacter Nous
             </Link>
             

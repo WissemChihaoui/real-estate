@@ -23,7 +23,7 @@ function App() {
         },
         
         {
-          path:"/list/properity/:type",
+          path:"/list/properity",
           element:<ListPage/>
         },
         {
