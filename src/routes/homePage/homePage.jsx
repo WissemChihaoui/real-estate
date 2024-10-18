@@ -12,10 +12,10 @@ function HomePage() {
   const [properitys, setProperitys] = useState()
   const [Loading, setLoading] = useState(true)
 
+  // get new offres 
   useEffect(() => {
-    const fetchProperties = async () => {
+    const fetchNewProperties = async () => {
       try {
-        //setLoading(true);
         const response = await axios.get('http://localhost:5000/api/properties/get-properties');
         setProperitys(response.data);
         if (response.status===200){
@@ -25,9 +25,11 @@ function HomePage() {
         console.error('Error fetching properties:', error);
       }
     };
-
-    fetchProperties();
+    fetchNewProperties();
   }, []);
+
+  
+
   if (Loading){ return (
     <Loader/>
    )
@@ -52,7 +54,7 @@ function HomePage() {
               </div>
               
               <div className="box">
-                <h1>20+</h1>
+                <h1>{properitys.length}</h1>
                 <h2>Propriété prête</h2>
               </div>
             </div>
@@ -66,9 +68,12 @@ function HomePage() {
         <div className="recent-posts wrapper">
           <h1 className="title">Nouvelles Offres</h1>
           <div className="cards">
-          {properitys.map((item) => (
-              <SingleCard key={item.id} properity={item} />
-          ))}
+          {properitys
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .slice(0, 4)
+            .map((item) => (
+              <SingleCard key={item._id} properity={item} />
+            ))}
           </div>
         </div>
       </div>
@@ -76,10 +81,11 @@ function HomePage() {
         <div className="recent-posts wrapper">
           <h1 className="title">Des terrains</h1>
           <div className="cards">
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
+          {properitys
+            .filter((item) => item.type.includes("t"))
+            .map((item) => (
+              <SingleCard key={item._id} properity={item} />
+            ))}
           </div>
         </div>
       </div>

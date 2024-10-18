@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-
+const {type} = useParams()
   const user = true;
   return (
     <nav>
@@ -14,8 +14,8 @@ function Navbar() {
           <span>Krayem</span>
         </Link>
         <Link to="/">Accueil</Link>
-        <Link to="/list?type=b">Bien Immobilier</Link>
-        <Link to="/list?type=t">Terrain</Link>
+        <Link to="/list/properity/b">Maison</Link>
+        <Link to="/list/properity/t">Terrain</Link>
       </div>
       <div className="right">
         {user ? (
