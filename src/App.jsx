@@ -11,6 +11,7 @@ import Login from "./routes/login/login";
 import Register from "./routes/register/register";
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import NotFound from "./routes/404/notFound";
+import Add from "./routes/add/Add";
 function App() {
   const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ function App() {
         {
           path:"/edit-profile",
           element:<ProfileUpdatePage/>
+        },
+        {
+          path:"/add",
+          element:<Add />
         },
         {
           path:"/login",
