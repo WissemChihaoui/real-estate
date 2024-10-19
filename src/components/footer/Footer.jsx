@@ -20,7 +20,7 @@ const Footer = () => {
             </div>
         </div>
         <div className='rights'>
-            Toutes les droits sont réservé à <a target={'_blank'} href="https://wisecode.netlify.app">Wise Code</a>, 2024
+            Toutes les droits sont réservé à <a target={'_blank'} href="https://wise-code.netlify.app">Wise Code</a>, 2024
         </div>
     </div>
   )

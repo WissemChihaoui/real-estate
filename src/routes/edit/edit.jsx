@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import "./Add.scss";
+// import "./Add.scss";
 // import apiRequest from "../../lib/apiRequest";
 import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-function Add() {
+function Edit() {
   const [value, setValue] = useState("");
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
@@ -209,4 +209,4 @@ const handleSubmit = async (e) => {
   );
 }
 
-export default Add;
+export default Edit;

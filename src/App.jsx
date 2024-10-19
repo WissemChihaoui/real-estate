@@ -12,6 +12,7 @@ import Register from "./routes/register/register";
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import NotFound from "./routes/404/notFound";
 import Add from "./routes/add/Add";
+import Edit from "./routes/edit/edit";
 function App() {
   const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ function App() {
         {
           path:"/properity/:id",
           element:<SinglePage/>
+        },
+        {
+          path:"/edit-post/:id",
+          element:<Edit />
         },
         {
           path:"/profile",
