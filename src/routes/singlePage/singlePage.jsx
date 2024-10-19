@@ -173,7 +173,7 @@ if (Error){ return (
           <p className="title">{category.title}:</p>
           <div className="sizes">
             {category.items.map((item, index) => (
-              item.number == 0 && ( 
+              item.number > 0 && ( 
                 <div className="size" key={index}>
                   <span className="icon">{item.icon}</span> 
                   <span>{item.number > 1 ? `${item.number} ${item.label.toLowerCase()}` : item.label}</span> 
