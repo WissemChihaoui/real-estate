@@ -47,7 +47,7 @@ console.log(property);
         value: 'piscine', 
         icon: '🏊',        // Exemple d'icône
         exist: true,      // Par défaut non existant
-        number: property?.criteria?.piscine || 3      // Pas applicable (peut rester à 0 si non nécessaire)
+        number: property?.criteria?.piscine      // Pas applicable (peut rester à 0 si non nécessaire)
       },
       { 
         label: 'Garage', 
@@ -173,7 +173,7 @@ if (Error){ return (
           <p className="title">{category.title}:</p>
           <div className="sizes">
             {category.items.map((item, index) => (
-              item.exist && ( 
+              item.number == 0 && ( 
                 <div className="size" key={index}>
                   <span className="icon">{item.icon}</span> 
                   <span>{item.number > 1 ? `${item.number} ${item.label.toLowerCase()}` : item.label}</span> 

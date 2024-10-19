@@ -1,61 +1,99 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Add.scss";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 // import apiRequest from "../../lib/apiRequest";
 import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 function Add() {
   const [value, setValue] = useState("");
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
+  const [data, setData] = useState(
+    {
+      location: {
+        country: null,
+        address: null,
+        longitude: null,
+        latitude: null
+      },
+      criteria: {
+        piscine: 0,
+        garage: 0,
+        jardin: 0,
+        abri_voiture: 0,
+        terrasse: 0,
+        salon: 0,
+        cuisine: 0,
+        salle_a_manger: 0,
+        chambres: 0,
+        salle_de_bain: 0,
+        salle_d_eau: 0,
+        climatiseur: 0
+      },
+      thumbnails: [],
+      title: null,
+      price: null,
+      description: null,
+      type: null,
+      image:''
+    }
+  )
 
   const navigate = useNavigate()
 
-  const handleSubmit = (e)=>{
-    e.preventDefault();
-    console.log(images);
-    console.log('submitted');
+  useEffect(() => {
+    setData({...data, thumbnails: images})
+  }, [images])
+  
+  
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  console.log(data);
+  try {
+    const response = await axios.post("http://localhost:5000/api/properties/create-propertie", data, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+    console.log("Property created successfully:", response.data);
+    navigate("/profile"); // Navigate to a success page or display a success message
+  } catch (error) {
+    console.error("Error creating property:", error.response?.data?.message || error.message);
+    setError(error.response?.data?.message || "Failed to create property.");
   }
+};
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     const formData = new FormData(e.target);
-//     const inputs = Object.fromEntries(formData);
 
-//     try {
-//       const res = await apiRequest.post("/posts", {
-//         postData: {
-//           title: inputs.title,
-//           price: parseInt(inputs.price),
-//           address: inputs.address,
-//           city: inputs.city,
-//           bedroom: parseInt(inputs.bedroom),
-//           bathroom: parseInt(inputs.bathroom),
-//           type: inputs.type,
-//           property: inputs.property,
-//           latitude: inputs.latitude,
-//           longitude: inputs.longitude,
-//           images: images,
-//         },
-//         postDetail: {
-//           desc: value,
-//           utilities: inputs.utilities,
-//           pet: inputs.pet,
-//           income: inputs.income,
-//           size: parseInt(inputs.size),
-//           school: parseInt(inputs.school),
-//           bus: parseInt(inputs.bus),
-//           restaurant: parseInt(inputs.restaurant),
-//         },
-//       });
-//       navigate("/"+res.data.id)
-//     } catch (err) {
-//       console.log(err);
-//       setError(error);
-//     }
-//   };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+  
+    if (data.criteria.hasOwnProperty(name)) {
+      setData({
+        ...data,
+        criteria: { ...data.criteria, [name]: value }
+      });
+    } else {
+      setData({
+        ...data,
+        [name]: value
+      });
+    }
+  };
+  
+  const handleChangeLocation = (e) => {
+    const { name, value } = e.target;
+  
+    setData({
+      ...data,
+      location: { ...data.location, [name]: value }
+    });
+  };
 
   return (
     <div className="newPostPage">
@@ -65,92 +103,88 @@ function Add() {
           <form onSubmit={handleSubmit}>
             <div className="item">
               <label htmlFor="title">Titre</label>
-              <input id="title" name="title" type="text" />
+              <input id="title" value={data.title} name="title" type="text" onChange={handleChange}/>
             </div>
             <div className="item">
               <label htmlFor="price">Prix</label>
-              <input id="price" name="price" type="number" />
+              <input id="price" value={data.price} name="price" type="number" onChange={handleChange}/>
             </div>
             <div className="item">
               <label htmlFor="type">Type</label>
-              <select name="type" id="type">
+              <select name="type" value={data.type} id="type" onChange={handleChange}>
                 <option value={'t'}>Terrain</option>
                 <option value={'m'}>Maison</option>
                 <option value={'v'}>Villa</option>
               </select>
             </div>
-            <div className="item description">
+            <div className="item description" >
               <label htmlFor="desc">Description</label>
-              <textarea rows={10}></textarea>
+              <textarea name="description" value={data.description} onChange={handleChange} rows={10}></textarea>
             </div>
             <div className="item">
               <label htmlFor="country">Ville</label>
-              <input id="country" name="country" type="text" />
+              <input id="country" value={data.location.country} name="country" type="text" onChange={handleChangeLocation}/>
             </div>
             <div className="item">
-              <label htmlFor="adresse">Adresse</label>
-              <input id="adresse" name="adresse" type="text" />
+              <label htmlFor="address">Address</label>
+              <input id="address" value={data.location.address} name="address" type="text" onChange={handleChangeLocation}/>
             </div>
             <div className="item">
               <label htmlFor="latitude">Latitude</label>
-              <input id="latitude" name="latitude" type="text" />
+              <input id="latitude" value={data.location.latitude} name="latitude" type="text" onChange={handleChangeLocation}/>
             </div>
             <div className="item">
               <label htmlFor="longitude">Longitude</label>
-              <input id="longitude" name="longitude" type="text" />
+              <input id="longitude" value={data.location.longitude} name="longitude" type="text" onChange={handleChangeLocation}/>
             </div>
             
             <div className="item">
-              <label htmlFor="bedroom">Nombre de chambre</label>
-              <input min={1} id="bedroom" name="bedroom" type="number" />
+              <label htmlFor="chambres">Nombre de chambre</label>
+              <input id="chambres" value={data.criteria.chambres} name="chambres" type="number" min={0} onChange={handleChange}/>
             </div>
             <div className="item">
               <label htmlFor="bathroom">Nombre de salle de bain</label>
-              <input min={1} id="bathroom" name="bathroom" type="number" />
+              <input id="bathroom" value={data.criteria.salle_de_bain} name="bathroom" type="number" min={0} onChange={handleChange}/>
             </div>
             <div className="item">
               <label htmlFor="cuisine">Cuisine</label>
-              <input id="cuisine" name="cuisine" type="text" />
+              <input id="cuisine" value={data.criteria.cuisine} name="cuisine" type="number" min={0} onChange={handleChange}/>
             </div>
             <div className="item">
               <label htmlFor="salle_a_manger">Salle à manger</label>
-              <input id="salle_a_manger" name="salle_a_manger" type="text" />
+              <input id="salle_a_manger" value={data.criteria.salle_a_manger} name="salle_a_manger" type="number" min={0} onChange={handleChange}/>
             </div>
             <div className="item">
               <label htmlFor="piscine">Piscine</label>
-              <input id="piscine" name="piscine" type="text" />
+              <input id="piscine" name="piscine" value={data.criteria.piscine} type="number" min={0} onChange={handleChange}/>
             </div>
             <div className="item">
               <label htmlFor="garage">Garage</label>
-              <input id="garage" name="garage" type="text" />
+              <input id="garage" name="garage" value={data.criteria.garage} type="number" min={0} onChange={handleChange}/>
             </div>
             <div className="item">
               <label htmlFor="jardin">Jardin</label>
-              <input id="jardin" name="jardin" type="text" />
+              <input id="jardin" name="jardin" value={data.criteria.jardin} type="number" min={0} onChange={handleChange}/>
             </div>
             <div className="item">
               <label htmlFor="abri_voiture">Abri voiture</label>
-              <input id="abri_voiture" name="abri_voiture" type="text" />
-            </div>
-            <div className="item">
-              <label htmlFor="abri_voiture">Abri voiture</label>
-              <input id="abri_voiture" name="abri_voiture" type="text" />
+              <input id="abri_voiture" name="abri_voiture" value={data.criteria.abri_voiture} type="number" min={0} onChange={handleChange}/>
             </div>
             <div className="item">
               <label htmlFor="terrasse">Terrasse</label>
-              <input id="terrasse" name="terrasse" type="text" />
+              <input id="terrasse" name="terrasse" value={data.criteria.terrasse} type="number" min={0} onChange={handleChange}/>
             </div>
             <div className="item">
               <label htmlFor="salon">Salon</label>
-              <input id="salon" name="salon" type="text" />
+              <input id="salon" name="salon" type="number" value={data.criteria.salon} min={0} onChange={handleChange}/>
             </div>
             <div className="item">
               <label htmlFor="salle_d_eau">Salle d'eau</label>
-              <input id="salle_d_eau" name="salle_d_eau" type="text" />
+              <input id="salle_d_eau" name="salle_d_eau" type="number" value={data.criteria.salle_d_eau} min={0} onChange={handleChange}/>
             </div>
             <div className="item">
               <label htmlFor="climatiseur">Climatiseur</label>
-              <input id="climatiseur" name="climatiseur" type="text" />
+              <input id="climatiseur" name="climatiseur" type="number" value={data.criteria.climatiseur} min={0} onChange={handleChange}/>
             </div>
             
             
