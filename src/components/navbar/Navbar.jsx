@@ -28,7 +28,7 @@ function Navbar({ user }) {
           </div>
         ) : (
           <>
-            <a href="/login">Connexion Admin</a>
+            <Link to="/login">Connexion Admin</Link>
           </>
         )}
         <div className={open ? "menuIcon active" : "menuIcon"}>
@@ -37,6 +37,19 @@ function Navbar({ user }) {
             alt=""
             onClick={() => setOpen((prev) => !prev)}
           />
+        </div>
+        <div className={open ? "menu active" : "menu"}>
+          <a href="/">Accueil</a>
+          <a href="/list/properity?type=m">Maison</a>
+          <a href="/list/properity?type=v">Villa</a>
+          <a href="/list/properity?type=t">Terrain</a>
+          {user? (
+            <a href={'/profile'} className="profile">
+              <span>Profile</span>
+            </a>
+          ): (
+            <a style={{fontSize: '16px'}} href={'/login'}>Connexion Admin</a>
+          )}
         </div>
       </div>
     </nav>

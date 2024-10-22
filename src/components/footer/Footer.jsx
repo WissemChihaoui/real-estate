@@ -11,7 +11,7 @@ const Footer = () => {
                     <img src="/logo.png" alt="" />
                     <span>Krayem</span>
                 </a>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque nesciunt eum atque nulla repellat asperiores animi optio unde voluptatum totam. Excepturi a at neque aliquam sint optio explicabo ut esse.</p>
+                <p>Krayem Immobiliere est une agence immobilière sise à Djerba midoun.Elle est spécialisée dans la vente Location et l'achat de biens immobiliers ( des villas terrains maisons appartements résidences) et permet de gagner beaucoup de temps .soyez bienvenus</p>
             </div>
             <div className='links'>
                 <a href="/list?type=t">Des terrains</a>

@@ -46,7 +46,7 @@ function Login() {
     <div className="login">
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
-          <h1>Welcome back</h1>
+          <h1>Bienvenue</h1>
           <input
             name="email"
             id="email"
@@ -59,7 +59,7 @@ function Login() {
             name="pwd"
             id="pwd"
             type="password"
-            placeholder="Password"
+            placeholder="Mot de pass"
             value={formData.pwd}
             onChange={handleChange}
           />
