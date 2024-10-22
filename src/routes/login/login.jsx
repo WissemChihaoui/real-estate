@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./login.scss";
-import { UserContext } from "../../lib/userContext";
+import { UserContext } from "../../lib/UserContext";
 
 function Login() {
   const { setUser } = useContext(UserContext); // Use the setUser function from context

@@ -4,7 +4,7 @@ import Card from"../card/Card"
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
 import Loader from '../loader/Loader'
-import { UserContext } from '../../lib/userContext'
+import { UserContext } from '../../lib/UserContext'
 
 function List(){
   const { user } = useContext(UserContext);
