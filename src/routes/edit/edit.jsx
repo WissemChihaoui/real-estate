@@ -1,76 +1,92 @@
 import { useState, useEffect } from "react";
-// import "./Add.scss";
-// import apiRequest from "../../lib/apiRequest";
 import UploadWidget from "../../components/uploadWidget/UploadWidget";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
+import Loader from "../../components/loader/Loader";
+import NotFound from "../404/notFound";
+import { FaTrash } from 'react-icons/fa'
 
 function Edit() {
-  const [value, setValue] = useState("");
   const [images, setImages] = useState([]);
-  const [error, setError] = useState("");
-  const [data, setData] = useState(
-    {
-      location: {
-        country: null,
-        address: null,
-        longitude: null,
-        latitude: null
-      },
-      criteria: {
-        piscine: 0,
-        garage: 0,
-        jardin: 0,
-        abri_voiture: 0,
-        terrasse: 0,
-        salon: 0,
-        cuisine: 0,
-        salle_a_manger: 0,
-        chambres: 0,
-        salle_de_bain: 0,
-        salle_d_eau: 0,
-        climatiseur: 0
-      },
-      thumbnails: [],
-      title: null,
-      price: null,
-      description: null,
-      type: null,
-      image:''
-    }
-  )
+  const [property, setProperty] = useState(null);  // Initially null
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  const navigate = useNavigate()
+  const [data, setData] = useState({
+    location: {
+      country: "",
+      address: "",
+      longitude: "",
+      latitude: ""
+    },
+    criteria: {
+      piscine: 0,
+      garage: 0,
+      jardin: 0,
+      abri_voiture: 0,
+      terrasse: 0,
+      salon: 0,
+      cuisine: 0,
+      salle_a_manger: 0,
+      chambres: 0,
+      salle_de_bain: 0,
+      salle_d_eau: 0,
+      climatiseur: 0
+    },
+    thumbnails: [],
+    title: "",
+    price: "",
+    description: "",
+    type: "",
+  });
+
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const apiUrl = import.meta.env.NEXT_PUBLIC_API_URL;
+  // Fetch the property data by ID
+  useEffect(() => {
+    const fetchProperty = async () => {
+      try {
+        const response = await axios.get(`https://real-estate-server-side-flame.vercel.app/api/properties/get-propertie/${id}`);
+        setProperty(response.data);
+        setImages(response.data.thumbnails);
+        setData(response.data);  // Set fetched data into form data
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        setError(true);
+      }
+    };
+
+    fetchProperty();
+  }, [id]);
 
   useEffect(() => {
-    setData({...data, thumbnails: images})
-  }, [images])
-  
-  
+    setData((prevData) => ({
+      ...prevData,
+      thumbnails: images,
+    }));
+  }, [images]);
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  console.log(data);
-  try {
-    const response = await axios.post("http://localhost:5000/api/properties/create-propertie", data, {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(`https://real-estate-server-side-flame.vercel.app/api/properties/edite-propertie/${id}`, data, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
 
-    console.log("Property created successfully:", response.data);
-    navigate("/profile"); // Navigate to a success page or display a success message
-  } catch (error) {
-    console.error("Error creating property:", error.response?.data?.message || error.message);
-    setError(error.response?.data?.message || "Failed to create property.");
-  }
-};
-
-
+      console.log("Property updated successfully:", response.data);
+      navigate("/profile");
+    } catch (error) {
+      console.error("Error updating property:", error.response?.data?.message || error.message);
+      setError(error.response?.data?.message || "Failed to update property.");
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-  
     if (data.criteria.hasOwnProperty(name)) {
       setData({
         ...data,
@@ -83,59 +99,105 @@ const handleSubmit = async (e) => {
       });
     }
   };
-  
+
   const handleChangeLocation = (e) => {
     const { name, value } = e.target;
-  
     setData({
       ...data,
       location: { ...data.location, [name]: value }
     });
   };
 
+  if (loading) return <Loader />;
+  if (error) return <NotFound />;
+
+  const deleteImage = (i) => {
+    setImages(images.filter((_,index) => index !== i))
+  }
+
   return (
     <div className="newPostPage">
       <div className="formContainer">
-        <h1>Ajouter Poste</h1>
+        <h1>Edit Property</h1>
         <div className="wrapper">
           <form onSubmit={handleSubmit}>
             <div className="item">
-              <label htmlFor="title">Titre</label>
-              <input id="title" value={data.title} name="title" type="text" onChange={handleChange}/>
+              <label htmlFor="title">Title</label>
+              <input
+                id="title"
+                name="title"
+                type="text"
+                value={data.title}
+                onChange={handleChange}
+              />
             </div>
             <div className="item">
-              <label htmlFor="price">Prix</label>
-              <input id="price" value={data.price} name="price" type="number" onChange={handleChange}/>
+              <label htmlFor="price">Price</label>
+              <input
+                id="price"
+                name="price"
+                type="number"
+                value={data.price}
+                onChange={handleChange}
+              />
             </div>
             <div className="item">
               <label htmlFor="type">Type</label>
               <select name="type" value={data.type} id="type" onChange={handleChange}>
-                <option value={'t'}>Terrain</option>
-                <option value={'m'}>Maison</option>
-                <option value={'v'}>Villa</option>
+                <option value="t">Terrain</option>
+                <option value="m">Maison</option>
+                <option value="v">Villa</option>
               </select>
             </div>
-            <div className="item description" >
+            <div className="item description">
               <label htmlFor="desc">Description</label>
-              <textarea name="description" value={data.description} onChange={handleChange} rows={10}></textarea>
+              <textarea
+                name="description"
+                value={data.description}
+                onChange={handleChange}
+                rows={10}
+              />
             </div>
             <div className="item">
-              <label htmlFor="country">Ville</label>
-              <input id="country" value={data.location.country} name="country" type="text" onChange={handleChangeLocation}/>
+              <label htmlFor="country">Country</label>
+              <input
+                id="country"
+                name="country"
+                type="text"
+                value={data.location.country}
+                onChange={handleChangeLocation}
+              />
             </div>
             <div className="item">
               <label htmlFor="address">Address</label>
-              <input id="address" value={data.location.address} name="address" type="text" onChange={handleChangeLocation}/>
+              <input
+                id="address"
+                name="address"
+                type="text"
+                value={data.location.address}
+                onChange={handleChangeLocation}
+              />
             </div>
             <div className="item">
               <label htmlFor="latitude">Latitude</label>
-              <input id="latitude" value={data.location.latitude} name="latitude" type="text" onChange={handleChangeLocation}/>
+              <input
+                id="latitude"
+                name="latitude"
+                type="text"
+                value={data.location.latitude}
+                onChange={handleChangeLocation}
+              />
             </div>
             <div className="item">
               <label htmlFor="longitude">Longitude</label>
-              <input id="longitude" value={data.location.longitude} name="longitude" type="text" onChange={handleChangeLocation}/>
+              <input
+                id="longitude"
+                name="longitude"
+                type="text"
+                value={data.location.longitude}
+                onChange={handleChangeLocation}
+              />
             </div>
-            
             <div className="item">
               <label htmlFor="chambres">Nombre de chambre</label>
               <input id="chambres" value={data.criteria.chambres} name="chambres" type="number" min={0} onChange={handleChange}/>
@@ -184,16 +246,17 @@ const handleSubmit = async (e) => {
               <label htmlFor="climatiseur">Climatiseur</label>
               <input id="climatiseur" name="climatiseur" type="number" value={data.criteria.climatiseur} min={0} onChange={handleChange}/>
             </div>
-            
-            
-            <button className="sendButton">Add</button>
+            <button type="submit" className="sendButton">Confirmer</button>
             {error && <span>error</span>}
           </form>
         </div>
       </div>
       <div className="sideContainer">
         {images.map((image, index) => (
+          <div className="imgContainer">
           <img src={image} key={index} alt="" />
+          <button onClick={()=>deleteImage(index)}><FaTrash /></button>
+          </div>
         ))}
         <UploadWidget
           uwConfig={{

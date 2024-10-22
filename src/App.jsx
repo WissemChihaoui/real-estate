@@ -8,65 +8,79 @@ import Layout from "./routes/layout/layout";
 import SinglePage from "./routes/singlePage/singlePage";
 import ProfilePage from "./routes/profilePage/profilePage";
 import Login from "./routes/login/login";
-import Register from "./routes/register/register";
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import NotFound from "./routes/404/notFound";
 import Add from "./routes/add/Add";
 import Edit from "./routes/edit/edit";
+import { UserProvider } from "./lib/userContext";
+import ProtectedRoute from "./lib/ProtectedRoute";
+
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Layout />,
-      children:[
+      children: [
         {
-          path:"/",
-          element:<HomePage/>
-        },
-        
-        {
-          path:"/list/properity",
-          element:<ListPage/>
+          path: "/",
+          element: <HomePage />
         },
         {
-          path:"/properity/:id",
-          element:<SinglePage/>
+          path: "/list/properity",
+          element: <ListPage />
         },
         {
-          path:"/edit-post/:id",
-          element:<Edit />
+          path: "/properity/:id",
+          element: <SinglePage />
         },
         {
-          path:"/profile",
-          element:<ProfilePage/>
+          path: "/edit-post/:id",
+          element: (
+            <ProtectedRoute>
+              <Edit />
+            </ProtectedRoute>
+          )
         },
         {
-          path:"/edit-profile",
-          element:<ProfileUpdatePage/>
+          path: "/profile",
+          element: (
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          )
         },
         {
-          path:"/add",
-          element:<Add />
+          path: "/edit-profile",
+          element: (
+            <ProtectedRoute>
+              <ProfileUpdatePage />
+            </ProtectedRoute>
+          )
         },
         {
-          path:"/login",
-          element:<Login/>
+          path: "/add",
+          element: (
+            <ProtectedRoute>
+              <Add />
+            </ProtectedRoute>
+          )
         },
         {
-          path:"/register",
-          element:<Register/>
+          path: "/login",
+          element: <Login />
         },
         {
-          path:"/*",
-          element:<NotFound/>
+          path: "/*",
+          element: <NotFound />
         }
       ]
     }
   ]);
 
   return (
-
-    <RouterProvider router={router}/>
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   );
 }
 

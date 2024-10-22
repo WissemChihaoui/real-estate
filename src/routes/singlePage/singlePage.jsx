@@ -15,12 +15,12 @@ const SinglePage=()=> {
 const [Error, setError] = useState(false)
   const { id } = useParams();
   console.log(id);
-
+  const apiUrl = import.meta.env.NEXT_PUBLIC_API_URL;
   useEffect(() => {
     const fetchProperties = async () => {
         try {
 //          setLoading(true)
-            const response = await axios.get(`http://localhost:5000/api/properties/get-propertie/${id}`);
+            const response = await axios.get(`https://real-estate-server-side-flame.vercel.app/api/properties/get-propertie/${id}`);
             setProperty(response.data);
             if (response.status===200){
               setLoading(false)

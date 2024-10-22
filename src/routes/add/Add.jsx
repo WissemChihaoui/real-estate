@@ -46,13 +46,13 @@ function Add() {
     setData({...data, thumbnails: images})
   }, [images])
   
-  
+  const apiUrl = import.meta.env.NEXT_PUBLIC_API_URL;
 
 const handleSubmit = async (e) => {
   e.preventDefault();
   console.log(data);
   try {
-    const response = await axios.post("http://localhost:5000/api/properties/create-propertie", data, {
+    const response = await axios.post(`https://real-estate-server-side-flame.vercel.app/api/properties/create-propertie`, data, {
       headers: {
         "Content-Type": "application/json"
       }

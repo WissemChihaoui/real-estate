@@ -1,19 +1,20 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import './list.scss'
 import Card from"../card/Card"
-import {listData} from"../../lib/dummydata"
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
 import Loader from '../loader/Loader'
+import { UserContext } from '../../lib/userContext'
 
 function List(){
+  const { user } = useContext(UserContext);
   const [properties, setProperties] = useState([])
   const [Loading, setLoading] = useState(true)
-
+  const apiUrl = import.meta.env.NEXT_PUBLIC_API_URL;
   useEffect(() => {
     const fetchProperties = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/properties/get-properties');
+            const response = await axios.get(`https://real-estate-server-side-flame.vercel.app/api/properties/get-properties`);
             setProperties(response.data);
             if (response.status===200){
               setLoading(false)
@@ -42,7 +43,7 @@ function List(){
   return (
     <div className='list'>
       {properties.map(item=>(
-        <Card key={item.id} item={item}/>
+        <Card key={item.id} item={item} user={user}/>
       ))}
     </div>
   )

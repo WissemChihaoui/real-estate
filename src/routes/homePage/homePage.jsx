@@ -11,12 +11,12 @@ import Loader from "../../components/loader/Loader";
 function HomePage() {
   const [properitys, setProperitys] = useState()
   const [Loading, setLoading] = useState(true)
-
+  const apiUrl = import.meta.env.NEXT_PUBLIC_API_URL;
   // get new offres 
   useEffect(() => {
     const fetchNewProperties = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/properties/get-properties');
+        const response = await axios.get(`https://real-estate-server-side-flame.vercel.app/api/properties/get-properties`);
         setProperitys(response.data);
         if (response.status===200){
           setLoading(false)

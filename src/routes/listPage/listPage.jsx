@@ -8,14 +8,16 @@ import { useLocation, useParams } from 'react-router-dom';
 import axios from "axios";
 import React, {useState, useEffect} from "react";
 function ListPage() {
- 
+  const apiUrl = import.meta.env.NEXT_PUBLIC_API_URL;
+  
+  console.log(apiUrl);
   const [properties, setProperties] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
   useEffect(() => {
     const fetchProperties = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/properties/get-properties');
+            const response = await axios.get(`https://real-estate-server-side-flame.vercel.app/api/properties/get-properties`);
             if(response.data){
               setIsLoading(false)
                setError(false)

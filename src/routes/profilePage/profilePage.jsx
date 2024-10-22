@@ -10,11 +10,13 @@ import 'react-loading-skeleton/dist/skeleton.css';
 function ProfilePage() {
   const [userInfo, setUserInfo] = useState();
   const [loading, setLoading] = useState(false);
+  const apiUrl = import.meta.env.NEXT_PUBLIC_API_URL;
+  console.log(apiUrl);
   useEffect(() => {
     const fetchProperties = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:5000/auth/user/get-info');
+        const response = await axios.get(`https://real-estate-server-side-flame.vercel.app/auth/user/get-info`);
         setUserInfo(response.data);
         console.log('res', response.data[0]);
       } catch (error) {
@@ -30,10 +32,10 @@ function ProfilePage() {
       <div className="details">
         <div className="wrapper">
           <div className="title">
-            <h1>Profile Information</h1>
+            <h1>Profile Administrateur</h1>
             <Link to={'/edit-profile'}>
               <button>
-                Update Profile
+                Modifier 
               </button>
             </Link>
           </div>
@@ -70,8 +72,8 @@ function ProfilePage() {
 
           </div>
           <div className="title">
-            <h1>My List</h1>
-            <Link to={'/add'}><button>Create New Post</button></Link>
+            <h1>Liste</h1>
+            <Link to={'/add'}><button>Creér Nouveau</button></Link>
           </div>
           <List />
         </div>

@@ -3,7 +3,7 @@ import { useState} from "react";
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 
-function ProfileUpdatePage() {
+function ProfileUpdatePage({user}) {
   const [formData, setFormData] = useState ({
     email: '',
     lastName: '',
@@ -27,7 +27,7 @@ function ProfileUpdatePage() {
       reader.readAsDataURL(file);
     }
   };
-
+  const apiUrl = import.meta.env.NEXT_PUBLIC_API_URL;
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -37,7 +37,7 @@ function ProfileUpdatePage() {
       console.log('form', formData)
       setLoading(true)
       const response = await axios.patch(
-        'http://localhost:5000/auth/user/edit-informations/670a93cb58755b9c1200cb9e',
+        `https://real-estate-server-side-flame.vercel.app/auth/user/edit-informations/${user._id}`,
         formData);
       if (response.status === 200){
         navigate("/profile")

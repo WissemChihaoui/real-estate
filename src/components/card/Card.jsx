@@ -5,17 +5,17 @@ import Modal from 'react-modal'; // If using react-modal
 import axios from "axios"; // For sending DELETE request
 import "./card.scss";
 
-function Card({ item }) {
+function Card({ item, user }) {
   const [isModalOpen, setIsModalOpen] = useState(false); // To control modal
-  const user = true;
+ 
   const navigate = useNavigate(); // For navigation after deletion
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-
+  const apiUrl = import.meta.env.NEXT_PUBLIC_API_URL;
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/properties/delete-propertie/${item._id}`);
+      await axios.delete(`https://real-estate-server-side-flame.vercel.app/api/properties/delete-propertie/${item._id}`);
       console.log("Property deleted successfully");
       closeModal();
       window.location.reload() // Navigate to a properties page or reload the list
@@ -75,10 +75,10 @@ function Card({ item }) {
         className="modal"
         overlayClassName="overlay"
       >
-        <h2>Are you sure you want to delete this property?</h2>
+        <h2>Êtes-vous sûr de vouloir supprimer ce bien ?</h2>
         <div className="modalActions">
-          <button onClick={handleDelete} className="confirmBtn">Yes, delete</button>
-          <button onClick={closeModal} className="cancelBtn">Cancel</button>
+          <button onClick={handleDelete} className="confirmBtn">Oui, supprimer</button>
+          <button onClick={closeModal} className="cancelBtn">Annuler</button>
         </div>
       </Modal>
     </div>
