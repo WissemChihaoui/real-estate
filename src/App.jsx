@@ -13,7 +13,7 @@ import NotFound from "./routes/404/notFound";
 import Add from "./routes/add/Add";
 import Edit from "./routes/edit/edit";
 import ProtectedRoute from "./lib/ProtectedRoute";
-import { UserProvider } from "./lib/userContext";
+import { UserProvider } from "./lib/UserContext";
 
 function App() {
   const router = createBrowserRouter([
