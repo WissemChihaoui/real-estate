@@ -12,8 +12,8 @@ import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import NotFound from "./routes/404/notFound";
 import Add from "./routes/add/Add";
 import Edit from "./routes/edit/edit";
-import { UserProvider } from "./lib/userContext";
 import ProtectedRoute from "./lib/ProtectedRoute";
+import { UserProvider } from "./lib/userContext";
 
 function App() {
   const router = createBrowserRouter([
