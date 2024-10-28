@@ -88,3 +88,24 @@
     top: 2rem;
     font-size: 23px;
 }
+@media (max-width: 738px) {
+ .form{
+    display: flex;
+    flex-direction: column;
+ }
+ .form__email{
+    width: 300px;
+ }
+ .form__button{
+    width: 100%;
+ }
+ .subscribe{
+    width: 100%;
+ }
+ .close{
+    
+    right: 2rem;
+    top: 1rem;
+    font-size: 16px;
+}
+}
