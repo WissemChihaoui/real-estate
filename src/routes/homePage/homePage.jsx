@@ -5,14 +5,22 @@ import SingleCard from "../../components/singleCard/SingleCard";
 import "./homePage.scss";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
+import Newsletter from "../../components/newsletter/newsletter";
 
 
 
 function HomePage() {
   const [properitys, setProperitys] = useState()
   const [Loading, setLoading] = useState(true)
+  const [displayNewsletter, setDisplayNewsletter] = useState(false)
   const apiUrl = import.meta.env.NEXT_PUBLIC_API_URL;
   // get new offres 
+  useEffect(()=>{
+    setDisplayNewsletter(true)
+  },[])
+  const hideNewsletter =()=> {
+    setDisplayNewsletter(false)
+  }
   useEffect(() => {
     const fetchNewProperties = async () => {
       try {
@@ -35,7 +43,8 @@ function HomePage() {
    )
   }
   return (
-    <div>
+    <>
+      {displayNewsletter && <Newsletter hideNewsletter={hideNewsletter}/>}
       <div className="homePage">
         <div className="textContainer">
           <div className="wrapper">
@@ -89,7 +98,7 @@ function HomePage() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

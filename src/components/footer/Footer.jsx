@@ -18,6 +18,14 @@ const Footer = () => {
                 <a href="/list?type=b">Des Bien Immobilier</a>
                 <a href="#">Annoncer</a>
             </div>
+            <div className="newsletter">
+                <p>Recevoir nos nouvelle à le moment de publication</p>
+                <h3>Rejoinger avec votre mail</h3>
+                <div class='form-newsletter'>
+                    <input type="email" placeholder='E-Mail'/>
+                    <button>Rejoindre</button>
+                </div>
+            </div>
         </div>
         <div className='rights'>
             Toutes les droits sont réservé à <a target={'_blank'} href="https://wise-code.netlify.app">Wise Code</a>, 2024
