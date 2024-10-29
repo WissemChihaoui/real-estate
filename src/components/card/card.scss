@@ -24,10 +24,7 @@
   .imageContainer {
     flex: 2;
     height: 200px;
-
-    @include md {
-      display: none;
-    }
+    position: relative; /* To allow the badge to position itself over the image */
 
     img {
       width: 100%;
@@ -35,7 +32,10 @@
       object-fit: cover;
       border-radius: 10px;
     }
+
+   
   }
+
   .textContainer {
     flex: 3;
     display: flex;

@@ -3,10 +3,11 @@ import "./searchBar.scss";
 import { useNavigate } from "react-router-dom";
 
 const types = [{value: 't', label: 'Terrain'}, {value:'m', label:'Maison'}, {value:'v', label:'Villa'}];
-
+const ventes = [{value: 'vente', label: 'Vente'}, {value:'location', label: 'Location'}];
 function SearchBar() {
   const navigate = useNavigate();
   const [query, setQuery] = useState({
+    vente:'vente',
     type: "m",
     location: "",
     minPrice: 0,
@@ -14,7 +15,7 @@ function SearchBar() {
   });
 
   const switchType = (val) => {
-    setQuery((prev) => ({ ...prev, type: val }));
+    setQuery((prev) => ({ ...prev, vente: val }));
   };
 
   const handleChange = (e)=> {
@@ -41,17 +42,22 @@ function SearchBar() {
   return (
     <div className="searchBar">
       <div className="type">
-        {types.map((type, index) => (
+        {ventes.map((type, index) => (
           <button
             key={index}
             onClick={() => switchType(type.value)}
-            className={query.type === type.value ? "active" : ""}
+            className={query.vente === type.value ? "active" : ""}
           >
             {type.label}
           </button>
         ))}
       </div>
       <form>
+        {/* <select name="type" id="type">
+          {types.map((type,_)=> {
+            <option>{type.label}</option>
+          })}
+        </select> */}
         <input type="text" name="location" placeholder="Ville" onChange={handleChange}/>
         
         <input

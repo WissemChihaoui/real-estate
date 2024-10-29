@@ -48,7 +48,7 @@ function HomePage() {
       <div className="homePage">
         <div className="textContainer">
           <div className="wrapper">
-            <h1 className="title">Trouvez l'Immobilier & Obtenez Votre Lieu de Rêve</h1>
+            <h1 className="title">AGENCE DEMONSTRATION</h1>
             <p>
               Que vous recherchiez la maison de vos rêves ou un terrain pour construire, nous vous accompagnons à chaque étape. 
               Découvrez notre vaste sélection de propriétés adaptées à tous les besoins et budgets, avec un service sur mesure 

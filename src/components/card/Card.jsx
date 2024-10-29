@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Modal from 'react-modal'; // If using react-modal
 import axios from "axios"; // For sending DELETE request
 import "./card.scss";
+import Badge from "../badge/Badge";
 
 function Card({ item, user }) {
   const [isModalOpen, setIsModalOpen] = useState(false); // To control modal
@@ -27,6 +28,8 @@ function Card({ item, user }) {
   return (
     <div className="card">
       <Link to={`/properity/${item._id}`} className="imageContainer">
+        
+        <Badge /> 
         <img src={item.thumbnails[0]} alt="" />
       </Link>
       <div className="textContainer">

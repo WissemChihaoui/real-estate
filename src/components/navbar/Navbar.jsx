@@ -1,7 +1,32 @@
 import { useState } from "react";
 import "./navbar.scss";
 import { Link } from "react-router-dom";
-
+import NavbarDropDown from "../navbarDropDown/NavbarDropDown";
+const dropdownsData = [
+  {
+    header: 'Vente',
+    menu: [
+      { title: 'Vente de maison', link: '/vente-maison' },
+      { title: 'Vente de villa', link: '/vente-villa' },
+      { title: 'Vente de terrain', link: '/vente-terrain' }
+    ]
+  },
+  {
+    header: 'Location Saisionniere',
+    menu: [
+      { title: 'Location villa', link: '/location-appartement' },
+      { title: 'Location résidence', link: '/location-villa' },
+      { title: 'Location maison', link: '/location-terrain' }
+    ]
+  },
+  {
+    header: 'Location Annuelle',
+    menu: [
+      { title: 'Location villa', link: '/' },
+      { title: 'Location maison', link: '/' }
+    ]
+  }
+];
 function Navbar({ user }) {
   const [open, setOpen] = useState(false);
 
@@ -13,9 +38,9 @@ function Navbar({ user }) {
           <span>Krayem</span>
         </Link>
         <Link to="/">Accueil</Link>
-        <Link to="/list/properity?type=m">Maison</Link>
-        <Link to="/list/properity?type=v">Villa</Link>
-        <Link to="/list/properity?type=t">Terrain</Link>
+        <NavbarDropDown dropdowns={dropdownsData}/>
+      
+       
       </div>
       <div className="right">
         {user ? (
@@ -40,7 +65,8 @@ function Navbar({ user }) {
         </div>
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Accueil</a>
-          <a href="/list/properity?type=m">Maison</a>
+          
+          {/* <a href="/list/properity?type=m">Maison</a> */}
           <a href="/list/properity?type=v">Villa</a>
           <a href="/list/properity?type=t">Terrain</a>
           {user? (

@@ -1,10 +1,14 @@
 import './SingleCard.scss'
 import { Link } from "react-router-dom";
+import Badge from '../badge/Badge';
 const SingleCard = (item) => {
   console.log(item);
   return (
     <Link to={`/properity/${item.properity?._id}`} className='singleCard'>
-        <img className='img-first' src={item.properity.thumbnails[0] ?item.properity.thumbnails[0] : '/blank-img.jpg' } alt="" />
+        <div className='img-container'>
+          <Badge />
+          <img className='img-first' src={item.properity.thumbnails[0] ?item.properity.thumbnails[0] : '/blank-img.jpg' } alt="" />
+        </div>
         <div className="info">
             <h2>{item.properity?.title}</h2>
             <p>{item.properity?.description}.</p>
