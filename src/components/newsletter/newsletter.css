@@ -8,6 +8,15 @@
     background-color: rgba(99, 99, 99, 0.3);
     z-index: 10000;
 }
+.subscribe-back{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(99, 99, 99, 0.3);
+    z-index: 10000;
+}
 .subscribe {
     position: relative;
     top: 50%;
@@ -107,4 +116,13 @@
     top: 1rem;
     font-size: 16px;
 }
+}
+.subscribe-back{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(99, 99, 99, 0.3);
+    z-index: 10000;
 }
