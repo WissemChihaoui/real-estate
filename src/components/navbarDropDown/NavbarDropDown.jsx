@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
-import './NavbarDropDown.scss'; // Ensure your SCSS is imported
+import { useRef, useState, useEffect } from 'react';
+import './NavbarDropDown.scss';
 
 const NavbarDropDown = ({ dropdowns }) => {
   const [openIndex, setOpenIndex] = useState(null);

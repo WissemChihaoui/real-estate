@@ -6,7 +6,7 @@ const SingleCard = (item) => {
   return (
     <Link to={`/properity/${item.properity?._id}`} className='singleCard'>
         <div className='img-container'>
-          <Badge />
+          <Badge forLocation={item.properity.for}/>
           <img className='img-first' src={item.properity.thumbnails[0] ?item.properity.thumbnails[0] : '/blank-img.jpg' } alt="" />
         </div>
         <div className="info">

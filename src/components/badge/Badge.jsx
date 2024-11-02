@@ -1,11 +1,11 @@
-import React from 'react';
 import './Badge.scss';
 
-const Badge = () => {
-    const type= 'location';
+const Badge = ({forLocation}) => {
+  console.log(forLocation);
+  
   return (
-    <div className={`badge ${type}`}>
-      {type === 'vente' ? 'Vente' : 'Location'}
+    <div className={`badge ${forLocation}`}>
+      {forLocation === 'vente' ? 'Vente' : 'Location'}
     </div>
   );
 };

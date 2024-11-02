@@ -8,6 +8,7 @@ import Map from "../../components/map/Map";
 import Loader from "../../components/loader/Loader";
 import NotFound from "../404/notFound";
 import { FaWhatsapp } from "react-icons/fa";
+import Badge from "../../components/badge/Badge";
 
 const SinglePage=()=> {
   const [property, setProperty] = useState()

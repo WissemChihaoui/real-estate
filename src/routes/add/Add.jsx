@@ -120,6 +120,14 @@ const handleSubmit = async (e) => {
               <textarea name="description" value={data.description} onChange={handleChange} rows={10}></textarea>
             </div>
             <div className="item">
+              <label htmlFor="for">Location/Vente</label>
+              
+            <select name="for" value={data.for} id="for" onChange={handleChange}>
+                <option value={'location'}>Location</option>
+                <option value={'vente'}>Vente</option>
+              </select>
+              </div>
+            <div className="item">
               <label htmlFor="country">Ville</label>
               <input id="country" value={data.location.country} name="country" type="text" onChange={handleChangeLocation}/>
             </div>
@@ -186,7 +194,7 @@ const handleSubmit = async (e) => {
             </div>
             
             
-            <button className="sendButton">Add</button>
+            <button className="sendButton">Ajouter</button>
             {error && <span>error</span>}
           </form>
         </div>

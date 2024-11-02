@@ -36,6 +36,7 @@ function Edit() {
     thumbnails: [],
     title: "",
     price: "",
+    for:"",
     description: "",
     type: "",
   });
@@ -158,6 +159,14 @@ function Edit() {
                 rows={10}
               />
             </div>
+            <div className="item">
+              <label htmlFor="for">Location/Vente</label>
+              
+            <select name="for" value={data.for} id="for" onChange={handleChange}>
+                <option value={'location'}>Location</option>
+                <option value={'vente'}>Vente</option>
+              </select>
+              </div>
             <div className="item">
               <label htmlFor="country">Country</label>
               <input

@@ -65,10 +65,10 @@ function Navbar({ user }) {
         </div>
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Accueil</a>
+          <a href="/">Vente</a>
+          <a href="/">Location Annuelle</a>
+          <a href="/">Location Saisionniere</a>
           
-          {/* <a href="/list/properity?type=m">Maison</a> */}
-          <a href="/list/properity?type=v">Villa</a>
-          <a href="/list/properity?type=t">Terrain</a>
           {user? (
             <a href={'/profile'} className="profile">
               <span>Profile</span>

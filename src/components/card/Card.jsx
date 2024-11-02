@@ -29,7 +29,7 @@ function Card({ item, user }) {
     <div className="card">
       <Link to={`/properity/${item._id}`} className="imageContainer">
         
-        <Badge /> 
+        <Badge forLocation={item?.for}/>
         <img src={item.thumbnails[0]} alt="" />
       </Link>
       <div className="textContainer">
