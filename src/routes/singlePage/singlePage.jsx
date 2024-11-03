@@ -21,7 +21,7 @@ const [Error, setError] = useState(false)
     const fetchProperties = async () => {
         try {
 //          setLoading(true)
-            const response = await axios.get(`https://real-estate-server-side-flame.vercel.app/api/properties/get-propertie/${id}`);
+            const response = await axios.get(`https://krayem-server.vercel.app/api/properties/get-propertie/${id}`);
             setProperty(response.data);
             if (response.status===200){
               setLoading(false)

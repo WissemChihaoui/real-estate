@@ -16,7 +16,7 @@ function Card({ item, user }) {
   const apiUrl = import.meta.env.NEXT_PUBLIC_API_URL;
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://real-estate-server-side-flame.vercel.app/api/properties/delete-propertie/${item._id}`);
+      await axios.delete(`https://krayem-server.vercel.app/api/properties/delete-propertie/${item._id}`);
       console.log("Property deleted successfully");
       closeModal();
       window.location.reload() // Navigate to a properties page or reload the list

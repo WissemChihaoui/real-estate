@@ -14,7 +14,7 @@ function List(){
   useEffect(() => {
     const fetchProperties = async () => {
         try {
-            const response = await axios.get(`https://real-estate-server-side-flame.vercel.app/api/properties/get-properties`);
+            const response = await axios.get(`https://krayem-server.vercel.app/api/properties/get-properties`);
             setProperties(response.data);
             if (response.status===200){
               setLoading(false)

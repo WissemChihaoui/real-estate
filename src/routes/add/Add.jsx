@@ -52,7 +52,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   console.log(data);
   try {
-    const response = await axios.post(`https://real-estate-server-side-flame.vercel.app/api/properties/create-propertie`, data, {
+    const response = await axios.post(`https://krayem-server.vercel.app/api/properties/create-propertie`, data, {
       headers: {
         "Content-Type": "application/json"
       }

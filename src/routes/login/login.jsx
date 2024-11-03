@@ -21,7 +21,7 @@ function Login() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `https://real-estate-server-side-flame.vercel.app/auth/user/login`,
+        `https://krayem-server.vercel.app/auth/user/login`,
         formData
       );
 

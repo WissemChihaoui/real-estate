@@ -37,7 +37,7 @@ function ProfileUpdatePage({user}) {
       console.log('form', formData)
       setLoading(true)
       const response = await axios.patch(
-        `https://real-estate-server-side-flame.vercel.app/auth/user/edit-informations/${user._id}`,
+        `https://krayem-server.vercel.app/auth/user/edit-informations/${user._id}`,
         formData);
       if (response.status === 200){
         navigate("/profile")

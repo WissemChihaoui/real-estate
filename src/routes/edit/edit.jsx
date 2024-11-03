@@ -48,7 +48,7 @@ function Edit() {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const response = await axios.get(`https://real-estate-server-side-flame.vercel.app/api/properties/get-propertie/${id}`);
+        const response = await axios.get(`https://krayem-server.vercel.app/api/properties/get-propertie/${id}`);
         setProperty(response.data);
         setImages(response.data.thumbnails);
         setData(response.data);  // Set fetched data into form data
@@ -72,7 +72,7 @@ function Edit() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`https://real-estate-server-side-flame.vercel.app/api/properties/edite-propertie/${id}`, data, {
+      const response = await axios.put(`https://krayem-server.vercel.app/api/properties/edite-propertie/${id}`, data, {
         headers: {
           "Content-Type": "application/json"
         }

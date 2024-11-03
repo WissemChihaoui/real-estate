@@ -16,7 +16,7 @@ function ProfilePage() {
     const fetchProperties = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://real-estate-server-side-flame.vercel.app/auth/user/get-info`);
+        const response = await axios.get(`https://krayem-server.vercel.app/auth/user/get-info`);
         setUserInfo(response.data);
         console.log('res', response.data[0]);
       } catch (error) {
