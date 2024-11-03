@@ -35,10 +35,12 @@
 
   .bottom {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1rem;
-
+    gap: 3pxrem;
+    .item{
+      flex-grow: 1;
+    }
     button {
       width: 100px;
       padding: 10px;

@@ -6,24 +6,24 @@ const dropdownsData = [
   {
     header: 'Vente',
     menu: [
-      { title: 'Vente de maison', link: '/vente-maison' },
-      { title: 'Vente de villa', link: '/vente-villa' },
-      { title: 'Vente de terrain', link: '/vente-terrain' }
+      { title: 'Vente de maison', link: '/list/properity?for=vente&type=m' },
+      { title: 'Vente de villa', link: '/list/properity?for=vente&type=v' },
+      { title: 'Vente de terrain', link: '/list/properity?for=vente&type=t' }
     ]
   },
   {
     header: 'Location Saisionniere',
     menu: [
-      { title: 'Location villa', link: '/location-appartement' },
-      { title: 'Location résidence', link: '/location-villa' },
-      { title: 'Location maison', link: '/location-terrain' }
+      { title: 'Location villa', link: '/list/properity?type=v&for=location_sais' },
+      { title: 'Location résidence', link: '/list/properity?type=v&for=location_sais' },
+      { title: 'Location maison', link: '/list/properity?type=m&for=location_sais' }
     ]
   },
   {
     header: 'Location Annuelle',
     menu: [
-      { title: 'Location villa', link: '/' },
-      { title: 'Location maison', link: '/' }
+      { title: 'Location villa', link: '/list/properity?type=v&for=location_annu' },
+      { title: 'Location maison', link: '/list/properity?type=m&for=location_annu' }
     ]
   }
 ];

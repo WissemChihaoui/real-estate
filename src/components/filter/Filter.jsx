@@ -10,6 +10,7 @@ function Filter({queries}) {
     maxPrice: queries.maxPrice,
     type: queries.type,
     surface: queries.surface,
+    for: queries.for,
   })
 
   const handleChange = (e) => {
@@ -25,6 +26,7 @@ function Filter({queries}) {
     const params = new URLSearchParams();
   
     if (searchQueries.type) params.append('type', searchQueries.type);
+    if (searchQueries.for) params.append('for', searchQueries.for);
     if (searchQueries.location) params.append('location', searchQueries.location);
     if (searchQueries.minPrice > 0) params.append('minPrice', searchQueries.minPrice);
     if (searchQueries.maxPrice > 0) params.append('maxPrice', searchQueries.maxPrice);
@@ -52,6 +54,15 @@ function Filter({queries}) {
         </div>
       </div>
       <div className="bottom">
+        <div className="item">
+          <label htmlFor="type">Location/Vente</label>
+        <select name="for" onChange={handleChange} id="for" value={searchQueries.for}>
+          <option value="">Touts</option>
+          <option value="vente">Vente</option>
+          <option value="location_sais">Location Saisionniere</option>
+          <option value="location_annu">Location Annuelle</option>
+        </select>
+        </div>
         <div className="item">
           <label htmlFor="type">Type</label>
         <select name="type" onChange={handleChange} id="type" value={searchQueries.type}>

@@ -56,10 +56,10 @@
       border: none;
     }
 
-    input {
+    input, select {
       border: none;
-      padding: 0px 10px;
-      width: 200px;
+      padding: 12px 12px;
+      width: 150px;
 
       @include lg {
         padding: 0px 5px;

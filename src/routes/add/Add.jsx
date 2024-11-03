@@ -123,8 +123,9 @@ const handleSubmit = async (e) => {
               <label htmlFor="for">Location/Vente</label>
               
             <select name="for" value={data.for} id="for" onChange={handleChange}>
-                <option value={'location'}>Location</option>
                 <option value={'vente'}>Vente</option>
+                <option value={'location_sais'}>Location Saisionniere</option>
+                <option value={'location_annu'}>Location Annuelle</option>
               </select>
               </div>
             <div className="item">

@@ -1,4 +1,3 @@
-
 import "./listPage.scss";
 import Loader from "../../components/loader/Loader";
 import Filter from "../../components/filter/Filter";
@@ -48,9 +47,17 @@ function ListPage() {
     let matches = true;
 
     if (queries.location) {
-      matches = matches && item.location.address.toLowerCase().includes(queries.location.toLowerCase());
+      matches = matches &&
+       (
+        item.location.country.toLowerCase().includes(queries.location.toLowerCase())
+        || 
+        item.location.address.toLowerCase().includes(queries.location.toLowerCase())
+      );
     }
 
+    if (queries.for) {
+      matches = matches && item.price >= parseFloat(queries.for);
+    }
     if (queries.minPrice) {
       matches = matches && item.price >= parseFloat(queries.minPrice);
     }
