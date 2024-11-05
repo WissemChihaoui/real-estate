@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Chat from '../../components/chat/Chat';
 import List from '../../components/list/List';
 import './profilePage.scss';
@@ -8,6 +8,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 function ProfilePage() {
+  const navigate = useNavigate()
   const [userInfo, setUserInfo] = useState();
   const [loading, setLoading] = useState(false);
   const apiUrl = import.meta.env.NEXT_PUBLIC_API_URL;
@@ -27,17 +28,25 @@ function ProfilePage() {
     fetchProperties();
     console.log('', userInfo);
   }, []);
+
+  const handleLogout = ()=> {
+    localStorage.clear();
+    navigate('/')
+  }
   return (
     <div className="profilePage">
       <div className="details">
         <div className="wrapper">
           <div className="title">
             <h1>Profile Administrateur</h1>
+            <div>
+            <button onClick={()=>handleLogout()} style={{marginRight:'5px', background: '#e21d1d', color:'white'}}>Déconnexion</button>
             <Link to={'/edit-profile'}>
               <button>
                 Modifier 
               </button>
             </Link>
+            </div>
           </div>
           <div className="info">
             <span>
