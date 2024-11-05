@@ -56,7 +56,7 @@ function ListPage() {
     }
 
     if (queries.for) {
-      matches = matches && item.price >= parseFloat(queries.for);
+      matches = matches && item.for.toLowerCase().includes(queries.for.toLowerCase());
     }
     if (queries.minPrice) {
       matches = matches && item.price >= parseFloat(queries.minPrice);
