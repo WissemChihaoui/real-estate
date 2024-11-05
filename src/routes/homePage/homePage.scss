@@ -16,12 +16,36 @@
   }
 }
 
-
+.home-background{
+  min-height: 100vh;
+  background: url('/home-bg.jpg');
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background-repeat: no-repeat;
+}
+.home-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Adjust opacity as needed */
+  z-index: 2;
+}
 .homePage {
   display: flex;
+  z-index: 10;
+  position: relative;
   height: 100%;
-  margin-bottom: 4rem;
-
+  margin-bottom: 1rem;
+  color: white;
+  min-height: 100vh;
+  
   .textContainer {
     flex: 3;
 
@@ -46,10 +70,11 @@
       }
 
       .title {
-        font-size: 64px;
+        font-size: 48px;
 
-        @include lg {
-          font-size: 48px;
+        @include sm {
+          margin-top: 1rem;
+          font-size: 26px;
         }
       }
 
@@ -72,6 +97,15 @@
         h2 {
           font-size: 20px;
           font-weight: 300;
+        }
+      }
+
+      p{
+        font-size: 20px;
+        line-height: 140%;
+        @include sm {
+          font-size: 14px;
+        line-height: 100%;
         }
       }
     }

@@ -40,7 +40,8 @@ function HomePage() {
 
   return (
     <>
-      {displayNewsletter && <Newsletter hideNewsletter={hideNewsletter} />}
+      <div className="home-background"></div>
+      {/* {displayNewsletter && <Newsletter hideNewsletter={hideNewsletter} />} */}
       <div className="homePage">
         <div className="textContainer">
           <div className="wrapper">
@@ -64,9 +65,7 @@ function HomePage() {
             </div>
           </div>
         </div>
-        <div className="imgContainer">
-          <img src="/bg.png" alt="" />
-        </div>
+        
       </div>
 
       {/* Use ContentSection for recent offers */}
@@ -81,6 +80,14 @@ function HomePage() {
       <ContentSection
         title="Des terrains"
         data={properitys.filter((item) => item.type.includes("t"))}
+      />
+      <ContentSection
+        title="Des maison"
+        data={properitys.filter((item) => item.type.includes("m"))}
+      />
+      <ContentSection
+        title="Des villa"
+        data={properitys.filter((item) => item.type.includes("v"))}
       />
     </>
   );

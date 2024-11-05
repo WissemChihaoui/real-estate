@@ -3,7 +3,7 @@ import SingleCard from "../singleCard/SingleCard";
 // import "./ContentSection.scss";
 
 const ContentSection = ({ title, data }) => {
-  if (!data || data.length === 0) return null; // Return nothing if there's no data
+  if (!data || data.length === 0) return null;
 
   return (
     <div className="home-content">
