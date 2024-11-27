@@ -10,6 +10,7 @@ function Layout() {
   const { user } = useContext(UserContext); // Get user from context
 
   return (
+    <>
     <div className="layout">
       <div className="navbar">
         <Navbar user={user} />
@@ -17,8 +18,9 @@ function Layout() {
       <div className="content">
         <Outlet />
       </div>
-      <Footer />
     </div>
+      <Footer />
+    </>
   );
 }
 

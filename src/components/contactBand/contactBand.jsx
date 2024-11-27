@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPhoneAlt, FaFax, FaWhatsapp, FaEnvelope, FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa'; // Icons
+import { FaPhoneAlt, FaFax, FaWhatsapp, FaEnvelope, FaFacebook, FaInstagram, FaTiktok, FaLocationArrow } from 'react-icons/fa'; // Icons
 import './style.scss'
 const ContactBand = () => {
   return (
@@ -25,6 +25,11 @@ const ContactBand = () => {
               <span>info@krayem-immobiliere.com</span>
             </div>
             <div className="infoItem">
+              <FaEnvelope />
+              <span>krayem.immobiliere@gmail.com</span>
+            </div>
+            <div className="infoItem">
+              <FaLocationArrow />
               <span>Av. Farhat Hached Midoun</span>
             </div>
           </div>

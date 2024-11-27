@@ -3,7 +3,8 @@ import ContactBand from '../contactBand/contactBand'
 import './Footer.scss'
 const Footer = () => {
   return (
-    <div className='footer'>
+    <>
+        <div className='footer'>
         <ContactBand />
         <div className='footerContent'>
             <div className='about'>
@@ -31,6 +32,7 @@ const Footer = () => {
             Toutes les droits sont réservé à <a target={'_blank'} href="https://wise-code.netlify.app">Wise Code</a>, 2024
         </div>
     </div>
+    </>
   )
 }
 

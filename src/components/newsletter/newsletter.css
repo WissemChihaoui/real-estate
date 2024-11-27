@@ -61,11 +61,11 @@
 }
 
 .form__email:focus {
-	outline: 1px solid #fece51;
+	outline: 1px solid #606060;
 }
 
 .form__button {
-	background: #fece51;
+	background: #606060;
 	padding: 10px;
 	border: none;
 	width: 244px;

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import ContactBand from "../../components/contactBand/contactBand";
 import SearchBar from "../../components/searchBar/SearchBar";
 import Loader from "../../components/loader/Loader";
-import Newsletter from "../../components/newsletter/newsletter";
 import axios from "axios";
 import "./homePage.scss";
 import ContentSection from "../../components/contentSection/ContentSection";
@@ -53,16 +51,7 @@ function HomePage() {
               votre nouvelle vie.
             </p>
             <SearchBar />
-            <div className="boxes">
-              <div className="box">
-                <h1>16+</h1>
-                <h2>Années d'expérience</h2>
-              </div>
-              <div className="box">
-                <h1>{properitys.length}</h1>
-                <h2>Propriété prête</h2>
-              </div>
-            </div>
+            
           </div>
         </div>
         
